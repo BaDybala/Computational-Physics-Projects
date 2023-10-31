@@ -1,14 +1,14 @@
 MM Pset1 CP1
 
-Work within the setting of question 4, so in the space $L2w(R)$ with scalar product (5) and weight function $w(x) = exp(−x2)$.
+Work within the setting of question 4, so in the space $L^2_w(R)$ with scalar product (5) and weight function $w(x) = e^{−x^2}$.
 
 (a) Define, within Mathematica, the scalar product (5).
 
-(b) Write a short piece of code which realises the Gram-Schmidt procedure for a finite list of functions. In particular, this code should be capable of taking the monomials $(1, x, x2, . . . , xn)$ as an input and returning the orthogonal polynomials $(p0, . . . , pn)$.
+(b) Write a short piece of code which realises the Gram-Schmidt procedure for a finite list of functions. In particular, this code should be capable of taking the monomials $(1, x, x^2, . . . , x^n)$ as an input and returning the orthogonal polynomials $(p_0, . . . , p_n)$.
 
 (c) Use this code to check your by-hand calculation in question 4) and also apply it to larger monomial lists for n > 2.
 
-(d) Choose some functions in $f ∈ L^2_w(R)$ and expand them in the monomial basis $(p0, . . . , pn)$ to obtain an approximation $f ̃=Sum_k=0 -> k=n ⟨pk,f⟩pk$. Compare $f$ and $f ̃$ by producing a plot.
+(d) Choose some functions in $f ∈ L^2_w(R)$ and expand them in the monomial basis $(p_0, . . . , p_n)$ to obtain an approximation $\widetilde{f} = \sum{_{k=0}^{k=n}} ⟨p_k,f⟩ \cdot p_k$. Compare $f$ and $\widetilde{f}$ by producing a plot.
 
 (a)
  ```wolfram
