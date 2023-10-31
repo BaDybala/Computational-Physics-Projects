@@ -15,7 +15,7 @@ Verify the result by plotting $w$ together with a histogram of the point sample 
 (d) Choose a function $f ∈ L^1_{\mathbb{R}}$ and evaluate its integral $\int_{\mathbb{R}} dx w(x) f(x)$ numerically, by
 computing $n^{-1} \cdot \sum{_{i=1}^{n}} f(p_i)$. Compare the result with Mathematica’s built-in numerical integration.
 
-(a)
+(b)
 ```wolfram
 MH[w_, n_, sigma_: 1] := Module[{ptlst, pt, nextpt, u, alpha},
 
@@ -32,3 +32,24 @@ MH[w_, n_, sigma_: 1] := Module[{ptlst, pt, nextpt, u, alpha},
   ];
 
   ptlst];
+```
+
+(c)
+Now consider some measure $w(x)$ that's normalized to 1
+```wolfram
+w[x_] := Exp[-x^2] (1 + 5x^2 + 2x^4) /5 /Sqrt[Pi];
+Integrate[w[x], {x, -Infinity, Infinity}]
+Plot[w[x], {x, -5, 5}, Frame->True]
+```
+Generate the point sample distributed according to $w(x)$
+```wolfram
+n = 50000
+ptlst = MH[w, n, 0.6];
+Show[Histogram[ptlst, {0.1}, "PDF", Frame->True], Plot[w[x], {x, -4, 4}]]
+```
+
+(d)
+```wolfram
+f[x_] := Cos[x]^2;
+{NIntegrate[w[x] * f[x], {x, -10, 10}], Sum[f[ptlst[[i]]], {i,1, Length[ptlst]}] / Length[ptlst]}
+```
