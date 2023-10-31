@@ -1,4 +1,4 @@
- ```mathematica
+ ```wolfram
 
 "MM Pset1 CP1) 
 Work within the setting of question 4), above, so in the space L2w(R) with scalar product (5) and weight function w(x) = exp(−x2).
@@ -29,3 +29,4 @@ GS[flst_, var_] := Module[{obasis, i, k, ft},
 (c)
 
   
+```
