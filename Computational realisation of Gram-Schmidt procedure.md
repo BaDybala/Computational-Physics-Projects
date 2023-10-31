@@ -8,7 +8,7 @@ Work within the setting of question 4, so in the space $L2w(R)$ with scalar prod
 
 (c) Use this code to check your by-hand calculation in question 4) and also apply it to larger monomial lists for n > 2.
 
-(d) Choose some functions in $f ∈ L2w(R)$ and expand them in the monomial basis $(p0, . . . , pn)$ to obtain an approximation $f ̃=Sum_k=0 -> k=n ⟨pk,f⟩pk$. Compare $f$ and $f ̃$ by producing a plot.
+(d) Choose some functions in $f ∈ L^2_w(R)$ and expand them in the monomial basis $(p0, . . . , pn)$ to obtain an approximation $f ̃=Sum_k=0 -> k=n ⟨pk,f⟩pk$. Compare $f$ and $f ̃$ by producing a plot.
 
 (a)
  ```wolfram
