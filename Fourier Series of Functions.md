@@ -1,3 +1,5 @@
+MM Pset2 P1
+
 a) Find the Fourier series for the function $f : [−π, π] → \mathbb{R}$ defined by
 
 $$
@@ -7,10 +9,6 @@ f(x) =
     \sin{x} & \text{if } 0 \le x \le \pi
 \end{cases}
 $$
-
-(b) Find the Fourier series for the functions $f : [−π,π] → \mathbb{R}$ defined by $f(x) = x^2$. 
-
-(c) Use the result from part (b) to sum the series $\sum{_{k=1}^{\infty}} k^{-4}$ .
 
 (a)
 ```wolfram
@@ -22,3 +20,7 @@ a = Table[Integrate[f[x] * Cos[kx] / Pi, {x, -Pi, Pi}, {k, 0, n}]  (* Coefficien
 b = Table[Integrate[f[x] * Sin[kx] / Pi, {x, -Pi, Pi}, {k, 1, n}]
 fseries[x_] := a[[1]]/2 + Sum[a[[k+1]] * Cos[kx], {k,1,n}] + Sum[[b[[k]] * Sin[kx], {k,1,n}];
 fseries[x]
+
+Plot[{f[x],fseries[x]}, {x, -Pi, Pi}, Frame->True]
+```
+
