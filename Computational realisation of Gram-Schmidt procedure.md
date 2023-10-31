@@ -41,6 +41,7 @@ Table[SP[basis5[[i]], basis5[[j]], x], {i,1, Length[basis5]}, {j, 1, Length[basi
 ```
 
 (d)
+
 Sanity check by expanding a fifth order polynomial
 ```wolfram
 poly = 4 - x - 3x^2 - 2x^3 - x^4 + x^5/2
@@ -54,5 +55,14 @@ coords2 = Table[SPNum[fex, basis2[[i]], x], {i, 1, Length[basis2]}] (* coordinat
 coords5 = Table[SPNum[fex, basis5[[i]], x], {i, 1, Length[basis5]}]
 fapprox2 = Simplify[coords2.basis2] (* LC of 3 monomials as an approximate to fex *)
 fapprox5 = Simplify[coords5.basis5]
-Plot[{fex, fapprox2, fapprox5}, {x, -5, 5}, Frame->True, GridLines->Automatic, PlotLabels->{"f", "3 monomials", "6 monomials"}]
+Plot[{fex, fapprox2, fapprox5}, {x, -3, 3}, Frame->True, GridLines->Automatic, PlotLabels->{"f", "3 monomials", "6 monomials"}]
+```
+Another example - a hyperbolic function
+```wolfram
+fex = Tanh[x]
+coords2 = Table[SPNum[fex, basis2[[i]], x], {i, 1, Length[basis2]}] (* coordinates for basis with 3 monomials *)
+coords5 = Table[SPNum[fex, basis5[[i]], x], {i, 1, Length[basis5]}]
+fapprox2 = Simplify[coords2.basis2] (* LC of 3 monomials as an approximate to fex *)
+fapprox5 = Simplify[coords5.basis5]
+Plot[{fex, fapprox2, fapprox5}, {x, -3, 3}, Frame->True, GridLines->Automatic, PlotLabels->{"f", "3 monomials", "6 monomials"}]
 ```
