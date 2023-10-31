@@ -14,3 +14,21 @@ Verify the result by plotting $w$ together with a histogram of the point sample 
 
 (d) Choose a function $f ∈ L^1_{\mathbb{R}}$ and evaluate its integral $\int_{\mathbb{R}} dx w(x) f(x)$ numerically, by
 computing $n^{-1} \cdot \sum{_{i=1}^{n}} f(p_i)$. Compare the result with Mathematica’s built-in numerical integration.
+
+(a)
+```wolfram
+MH[w_, n_, sigma_: 1] := Module[{ptlst, pt, nextpt, u, alpha},
+
+  (* First point, drawn from normal distribution around origin *)
+  ptlst = {RandomVariate[NormalDistribution[0, sigma]]};
+
+  While[Length[ptlst] < n,
+   (* Determine candidate for next point *)
+   pt = Last[ptlst] ; nextpt = RandomVariate[NormalDistribution[pt, sigma]];
+   (* Compute acceptance *)
+   alpha = w[nextpt] / w[pt]; u=RandomReal[{0,1}];
+   (* If accepted, add to list *)
+   If[u <= alpha, ptlst = Append[ptlst, nextpt]]
+  ];
+
+  ptlst];
