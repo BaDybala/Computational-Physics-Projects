@@ -57,7 +57,7 @@ Table[coeff[[k+1]] - HermiteH[k,x], {k,0,kmax}] // Simplify
 (c)
 Hamilton operator of the Harmonic oscillator
 ```wolfram
-H[\[Alpha]_] := -D[$\psi$, {x,2}] / 2 + x^2 $\psi$ / 2;
+H[\[Psi]_] := -D[\[Psi], {x,2}] / 2 + x^2 \[Psi] / 2;
 ```
 Energy eigenfunctions of the harmonic oscillator
 ```wolfram
@@ -71,5 +71,19 @@ Hmat // MatrixForm
 ```
 Define the new Hamiltonian which includes the anharmonic term
 ```wolfram
-H1[$\psi$_] := -D[$\psi$, {x,2}] / 2 + x^2 $\psi$ / 2 + $\epsilon$ x^4 $\psi$;
+H1[\[Psi]_] := -D[\[Psi], {x,2}] / 2 + x^2 \[Psi] / 2 + \[Epsilon] x^4 \[Psi];
+```
+Compute its matrix elements relative to the eigenfunctions of H
+```wolfram
+H1mat = Table[Integrate[Simplify[Psi[n,x] * H1[Psi[m,x]]], {x, -Infinity, Infinity}, {n,0,nmax}, {m,0,nmax}] // Simplify;
+H1mat // MatrixForm
+```
+Verify this produces the same as H if $\epsilon = 0$
+```wolfram
+H1mat /. \[Epsilon] -> 0 // MatrixForm
+```
+Find and plot the energy eigenvalues of this matrix as a function of $\epsilon$
+```wolfram
+eig = Transpose[Table[Map[List[eval, #] &, Take[Eigenvalues[H1mat /. \[Epsilon] -> eval], -4]], {eval, 0, 0.5, 0,0001}]];
+ListPlot[eig, Frame -> True, FrameLabel -> {"\[Epsilon]", "E_n"}, GridLines -> Automatic, PlotLegends -> {"E_3", "E_2", "E_1", "E_0"}]
 ```
