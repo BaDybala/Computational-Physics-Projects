@@ -31,3 +31,12 @@ Plot function
 Plot[x^2 / (1+x^2), {x,-3,3}, Frame -> True, GridLines -> Automatic]
 ```
 Find expansion coefficients and series
+```wolfram
+a= Table[Integrate[HermiteH[n,x] * Exp[-x^2], {x, -Infinity, Infinity}] / Sqrt[Pi] / 2^n / Factorial[n], {n,0,nmax}];
+series = Sum[a[[n+1]] HermiteH[n,x], {n,0,nmax}]
+seriesnum = Expand[series] // N
+```
+Compare function and series
+```wolfram
+Plot[{x^2 / (1+x^2), seriesnum}, {x,-3,3}, Frame -> True, PlotStyle -> {Blue, Red}, GridLines -> Automatic]
+```
