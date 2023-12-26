@@ -42,7 +42,7 @@ Plot[{x^2 / (1+x^2), seriesnum}, {x,-3,3}, Frame -> True, PlotStyle -> {Blue, Re
 ```
 
 (b)
-Define generating function $G(x,z)$. Taylor expand around $z=0$ to some maximal order $k_max$ and extract coefficients of $z^k$. This is equal to $H_k / k!$.
+Define generating function $G(x,z)$. Taylor expand around $z=0$ to some maximal order $k_max$ and extract coefficients of $z^k$. This is equal to $H_k / k!$
 ```wolfram
 kmax=5;
 G[x_,z_] := Exp[2xz-z^2];
@@ -52,4 +52,24 @@ coeff = CoefficientList[Gexp,z] * Table[Factorial[k], {k,0,kmax}]
 Compare with built-in Hermite polynomials as a sanity check
 ```wolfram
 Table[coeff[[k+1]] - HermiteH[k,x], {k,0,kmax}] // Simplify
+```
+
+(c)
+Hamilton operator of the Harmonic oscillator
+```wolfram
+H[$\psi$_] := -D[$\psi$, {x,2}] / 2 + x^2 $\psi$ / 2;
+```
+Energy eigenfunctions of the harmonic oscillator
+```wolfram
+Psi[n_,x_] := Exp[x^2 /2] * HermiteH[n,x] / Sqrt[Sqrt[Pi] * 2^n * Factorial[n]];
+```
+Compute the diagonal matrix which describes $H$ relative to its eigenfunctions
+```wolfram
+nmax=10;
+Hmat = Table[Integrate[Simplify[Psi[n,x] * H[Psi[m,x]]], {x, -Infinity, Infinity}, {n,0,nmax}, {m,0,nmax}];
+Hmat // MatrixForm
+```
+Define the new Hamiltonian which includes the anharmonic term
+```wolfram
+H1[$\psi$_] := -D[$\psi$, {x,2}] / 2 + x^2 $\psi$ / 2 + $\epsilon$ x^4 $\psi$;
 ```
