@@ -40,3 +40,16 @@ Compare function and series
 ```wolfram
 Plot[{x^2 / (1+x^2), seriesnum}, {x,-3,3}, Frame -> True, PlotStyle -> {Blue, Red}, GridLines -> Automatic]
 ```
+
+(b)
+Define generating function $G(x,z)$. Taylor expand around $z=0$ to some maximal order $k_max$ and extract coefficients of $z^k$. This is equal to $H_k / k!$.
+```wolfram
+kmax=5;
+G[x_,z_] := Exp[2xz-z^2];
+Gexp = Series[G[x,z], {z,0,kmax}] // Normal
+coeff = CoefficientList[Gexp,z] * Table[Factorial[k], {k,0,kmax}]
+```
+Compare with built-in Hermite polynomials as a sanity check
+```wolfram
+Table[coeff[[k+1]] - HermiteH[k,x], {k,0,kmax}] // Simplify
+```
