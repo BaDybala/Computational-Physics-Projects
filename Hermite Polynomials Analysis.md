@@ -57,7 +57,7 @@ Table[coeff[[k+1]] - HermiteH[k,x], {k,0,kmax}] // Simplify
 (c)
 Hamilton operator of the Harmonic oscillator
 ```wolfram
-H[$\psi$_] := -D[$\psi$, {x,2}] / 2 + x^2 $\psi$ / 2;
+H[psi_] := -D[$\psi$, {x,2}] / 2 + x^2 $\psi$ / 2;
 ```
 Energy eigenfunctions of the harmonic oscillator
 ```wolfram
